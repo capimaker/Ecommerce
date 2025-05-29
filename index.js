@@ -1,29 +1,18 @@
 const express = require("express");
 const app = express();
-
-app.use(express.json())
 const PORT = 3000;
 
+// la base de datos que Importa todos los modelos y la conexión
+const db = require("./models"); 
+
+// aqui va la middleware
+app.use(express.json());
+
+// aquí las rutas
+app.use("/users", require("./routes/users"));
 
 
-app.listen(PORT, () => {
-console.log( `puerto levantado en http://localhost${PORT}`);
-});
-
-const mysql = require('mysql2');
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '17Skrown27',
-});
-
-db.connect();
-
-app.get('/createdb',(req, res)=>{
-    let sql = 'CREATE DATABASE expressDB';
-    db.query(sql,(err, result)=>{
-        if (err)throw err; 
-         console.log(result);   
-        res.send('Database created...')
-    })
+// esto para levantar el server
+app.listen(PORT, ()=>{
+    console.log(`Server listening on http://localhost:${PORT}`)
 })
