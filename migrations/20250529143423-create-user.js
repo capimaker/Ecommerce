@@ -15,12 +15,16 @@ module.exports = {
       last_name: {
         type: Sequelize.STRING
       },
-      phone: {
-        type: Sequelize.INTEGER
-      },
       email: {
         type: Sequelize.STRING,
         unique:true,
+      },
+        password: {
+        type: Sequelize.STRING,
+        unique:true,
+      },
+      phone: {
+        type: Sequelize.INTEGER
       },
       role: {
         type: Sequelize.STRING
