@@ -9,7 +9,7 @@ const db = require("./models");
 app.use(express.json());
 
 // aquí las rutas
-app.use("/users", require("./routes/users"));
+app.use("/user", require("./routes/user"));
 
 
 // esto para levantar el server
