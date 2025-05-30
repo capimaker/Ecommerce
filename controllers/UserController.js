@@ -6,19 +6,23 @@ const jwt = require("jsonwebtoken");
 const transporter = require('../config/nodemailer.js');
 const { jwt_secret } = require("../config/config.json")["development"]
 
+//const index = require('../models/index.js');
+//index.User
+
 const UserController = {
     async create(req, res, next) {
         try {
-            
+            //req.body.role = "user"
+            //const user = await User.create(req.body)
             const password = await bcrypt.hash(req.body.password, 10)
             const user = await User.create({ ...req.body, password: password, confirmed: false, role: "user" })
             const emailToken = jwt.sign({ email: req.body.email }, jwt_secret, { expiresIn: '48h' })
-            const url = 'http://localhost:3000/user/confirm/' + emailToken
+            const url = 'http://localhost:3000/users/confirm/' + emailToken
             await transporter.sendMail({
                 to: req.body.email,
                 subject: "Confirme su registro",
                 html: `<h3> Bienvenido, estás a un paso de registrarte </h3>
-                <a href="${url}"> Haz click para confirmar tu registro</a>
+                <a href="${url}"> Clica para confirmar tu registro</a>
                 `,
             });
             res.status(201).send({
@@ -29,7 +33,7 @@ const UserController = {
         } catch (error) {
             console.log(error)
             next(error)
-            
+            // res.status(500).send(error) //sustituido por next(error)
         }
     },
     async login(req, res) {
