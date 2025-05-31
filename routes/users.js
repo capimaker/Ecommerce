@@ -12,3 +12,5 @@ router.delete("/logout", authentication, UserController.logout)
 router.delete("/id/:id", authentication, UserController.delete)
 
 module.exports = router
+
+

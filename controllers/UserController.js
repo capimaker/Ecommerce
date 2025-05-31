@@ -17,7 +17,7 @@ const UserController = {
             const password = await bcrypt.hash(req.body.password, 10)
             const user = await User.create({ ...req.body, password: password, confirmed: false, role: "user" })
             const emailToken = jwt.sign({ email: req.body.email }, jwt_secret, { expiresIn: '48h' })
-            const url = 'http://localhost:3000/users/confirm/' + emailToken
+            const url = 'http://localhost:3000/user/confirm/' + emailToken
             await transporter.sendMail({
                 to: req.body.email,
                 subject: "Confirme su registro",
