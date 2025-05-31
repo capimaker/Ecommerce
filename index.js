@@ -11,6 +11,10 @@ app.use(express.json());
 
 // aquí las rutas
 app.use("/users", require("./routes/users"));
+app.use("/orders", require("./routes/order"));
+app.use("/products", require("./routes/product"));
+
+
 
 
 // esto para levantar el server

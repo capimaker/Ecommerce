@@ -22,7 +22,7 @@ const UserController = {
                 to: req.body.email,
                 subject: "Confirme su registro",
                 html: `<h3> Bienvenido, estás a un paso de registrarte </h3>
-                <a href="${url}"> Clica para confirmar tu registro</a>
+                <a href="${url}"> Haz click en el enlace para confirmar tu registro</a>
                 `,
             });
             res.status(201).send({
