@@ -17,17 +17,22 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        unique:true,
+        unique: true,
       },
-        password: {
+      password: {
         type: Sequelize.STRING,
-        unique:true,
+        unique: true,
       },
       phone: {
         type: Sequelize.INTEGER
       },
       role: {
         type: Sequelize.STRING
+      },
+      confirmed: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

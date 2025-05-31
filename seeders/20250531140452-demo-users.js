@@ -1,25 +1,36 @@
 'use strict';
+const bcrypt = require('bcryptjs');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    await queryInterface.bulkInsert('Users', [
+      {
+        first_name: 'Carlos',
+        last_name: 'Ramos',
+        email: 'capimaker@gmail.com',
+        password: await bcrypt.hash('123456', 10),
+        phone: 123456789, // 🔧 Número como entero
+        role: 'user',
+        confirmed: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        first_name: 'Admin',
+        last_name: 'Master',
+        email: 'admin@example.com',
+        password: await bcrypt.hash('admin123', 10),
+        phone: 987654321, // 🔧 Número como entero
+        role: 'admin',
+        confirmed: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('Users', null, {});
   }
 };

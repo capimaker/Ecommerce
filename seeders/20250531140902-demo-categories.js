@@ -2,24 +2,37 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  async up(queryInterface, Sequelize) {
+    await queryInterface.bulkInsert('Categories', [
+      {
+        name_category: 'Deportivo',
+        description: 'Coches de alto rendimiento y velocidad como Ferrari o Lamborghini.',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name_category: 'SUV',
+        description: 'Vehículos deportivos utilitarios de lujo como el Range Rover Sport.',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name_category: 'Eléctrico',
+        description: 'Coches de lujo eléctricos como el Tesla Model S o Porsche Taycan.',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name_category: 'Clásico',
+        description: 'Modelos antiguos de colección con valor histórico.',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('Categories', null, {});
   }
 };
+

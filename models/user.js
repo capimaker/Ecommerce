@@ -19,7 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     phone: DataTypes.INTEGER,
-    role: DataTypes.STRING
+    role: DataTypes.STRING,
+    confirmed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  }
   }, {
     sequelize,
     modelName: 'User',
