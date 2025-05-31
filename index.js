@@ -4,6 +4,7 @@ const PORT = 3000;
 
 // la base de datos que Importa todos los modelos y la conexión
 const db = require("./models"); 
+const { User, Order, Product, Category, Review, OrderProduct, ProductCategory } = require("./models");
 
 // aqui va la middleware
 app.use(express.json());
