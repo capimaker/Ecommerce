@@ -46,13 +46,23 @@ const OrderController = {
     try {
       const order = await Order.findByPk(req.params.id, {
         include: [
-          { model: User, attributes: ["first_name","last_name", "email"] },
+          { model: User, attributes: ["id", "first_name", "last_name", "email", "role"] },
           { model: Product }
         ]
       });
-      if (!order) return res.status(404).send({ message: "Pedido no encontrado" });
+
+      if (!order) {
+        return res.status(404).send({ message: "Pedido no encontrado" });
+      }
+
+      // Solo el dueño o admin puede ver este pedido
+      if (req.user.role !== "admin" && req.user.id !== order.user_id) {
+        return res.status(403).send({ message: "No tienes permiso para ver este pedido" });
+      }
+
       res.status(200).send(order);
     } catch (error) {
+      console.error(error);
       res.status(500).send({ message: 'Ha habido un problema al cargar el pedido' });
     }
   },
