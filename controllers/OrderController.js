@@ -31,7 +31,7 @@ const OrderController = {
     try {
       const orders = await Order.findAll({
         include: [
-          { model: User, attributes: ["name", "email"] },
+          { model: User, attributes: ["first_name", "last_name", "email"] },
           { model: Product }
         ]
       });
@@ -46,7 +46,7 @@ const OrderController = {
     try {
       const order = await Order.findByPk(req.params.id, {
         include: [
-          { model: User, attributes: ["name", "email"] },
+          { model: User, attributes: ["first_name","last_name", "email"] },
           { model: Product }
         ]
       });
