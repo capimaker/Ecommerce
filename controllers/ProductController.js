@@ -14,9 +14,29 @@ const ProductController = {
 
   async getAll(req, res) {
     try {
+      const { name, price, sort } = req.query;
+
+      const where = {};
+      const order = [];
+
+      if (name) {
+        where.name_product = { [Op.like]: `%${name}%` };
+      }
+
+      if (price) {
+        where.price = price;
+      }
+
+      if (sort === "desc" || sort === "asc") {
+        order.push(["price", sort]);
+      }
+
       const products = await Product.findAll({
+        where,
+        order,
         include: [Category],
       });
+
       res.status(200).send(products);
     } catch (error) {
       res.status(500).send({ msg: "Error al obtener productos", error });
