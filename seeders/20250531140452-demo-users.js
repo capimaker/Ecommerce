@@ -10,7 +10,7 @@ module.exports = {
         last_name: 'Ramos',
         email: 'capimaker@gmail.com',
         password: await bcrypt.hash('123456', 10),
-        phone: 123456789, // 🔧 Número como entero
+        phone: 123456789, 
         role: 'user',
         confirmed: true,
         createdAt: new Date(),
@@ -21,7 +21,7 @@ module.exports = {
         last_name: 'Master',
         email: 'admin@example.com',
         password: await bcrypt.hash('admin123', 10),
-        phone: 987654321, // 🔧 Número como entero
+        phone: 987654321, 
         role: 'admin',
         confirmed: true,
         createdAt: new Date(),
