@@ -13,6 +13,7 @@ app.use(express.json());
 app.use("/users", require("./routes/users"));
 app.use("/orders", require("./routes/order"));
 app.use("/products", require("./routes/product"));
+app.use("/categories", require("./routes/category"));
 
 
 
